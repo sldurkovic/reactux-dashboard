@@ -23,6 +23,7 @@
   "rules": {
     "react/jsx-uses-vars": 1,
     "react/react-in-jsx-scope": 1,
+    "react/display-name": 0,
     "linebreak-style": [
       "error",
       "windows"
@@ -33,6 +34,7 @@
     ],
     "require-jsdoc": 0,
     "comma-dangle": 0,
-    "no-console": 0
+    "no-console": 0,
+    "eol-last": 0
   }
 }

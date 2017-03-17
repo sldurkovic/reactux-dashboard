@@ -1,6 +1,7 @@
 import React from 'react';
 import {Router, Route, Redirect, IndexRoute, hashHistory} from 'react-router';
 import AuthModule from './components/auth/AuthModule';
+import DataGrid from './views/DataGrid';
 import ApplicationShell from './ApplicationShell';
 
 class App extends React.Component {
@@ -21,7 +22,7 @@ const Welcome = function() {
 
 
 const About = function() {
-    return <div>About</div>;
+    return <span> About</span>;
 };
 
 const AppRoutes = () =>
@@ -30,6 +31,7 @@ const AppRoutes = () =>
             <Route component={ApplicationShell.Wrapper}>
                 <IndexRoute component={Welcome}/>
                 <Route path="about" component={About}/>
+                <Route path="data-grid" component={DataGrid}/>
             </Route>
             <Route path="login" component={AuthModule.Wrapper}/>
             <Redirect path="*" to="/"/>

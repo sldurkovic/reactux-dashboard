@@ -26,7 +26,7 @@ Wrapper.propTypes = {
 class NavLink extends React.Component {
     render() {
         let isActive = this.context.router.isActive(this.props.to, true);
-        return <li className={isActive ? 'active' : ''}><Link style={{display:'block'}} {...this.props} /></li>;
+        return <li className={isActive ? 'active' : ''}><Link style={{display: 'block'}} {...this.props} /></li>;
     }
 }
 
@@ -54,6 +54,7 @@ const Sidebar = () => (
                     <li>New Service 2</li>
                     <li>New Service 3</li>
                 </ul>
+                <NavLink to="/data-grid"><i className="fa fa-user fa-lg"/> Data grid</NavLink>
                 <NavLink to="/about"><i className="fa fa-user fa-lg"/> About</NavLink>
             </ul>
         </div>
