@@ -1,11 +1,12 @@
-let path = require('path');
-let webpack = require('webpack');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackMd5HashPlugin = require('webpack-md5-hash');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5HashPlugin = require('webpack-md5-hash');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
-let BUILD_DIR = path.resolve(__dirname, 'dist');
-let APP_DIR = path.resolve(__dirname, 'src');
+const BUILD_DIR = path.resolve(__dirname, 'dist');
+const APP_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
     entry: [
@@ -21,7 +22,21 @@ module.exports = {
     devtool: 'source-map',
     module: {
         loaders: [
-            {test: /\.css$/, loader: 'style-loader!css-loader'},
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    // resolve-url-loader may be chained before sass-loader if necessary
+                    use: ['css-loader', 'sass-loader']
+                })
+            },
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
             {test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=5000'},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
@@ -49,15 +64,17 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
 
         new WebpackMd5HashPlugin(),
-
-        new HtmlWebpackPlugin({
-            template: __dirname + '/src/index.tmpl.html'
-        }),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',
             jquery: 'jquery'
-        })
+        }),
+
+        new ExtractTextPlugin('styles.css'),
+
+        new HtmlWebpackPlugin({
+            template: __dirname + '/src/index.tmpl.html'
+        }),
 
 
     ]

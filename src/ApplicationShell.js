@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthModule from './components/auth/AuthModule';
-import {Link} from 'react-router';
+import {Route, Link} from 'react-router';
 
 class Wrapper extends React.Component {
 
@@ -39,7 +39,9 @@ NavLink.propTypes = {
 
 const Sidebar = () => (
     <div className="nav-side-menu">
-        <div className="brand">Reactux Dashboard</div>
+        <div className="brand hand">
+            <Route to="/">Reactux Dashboard</Route>
+        </div>
         <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"/>
 
         <div className="menu-list">

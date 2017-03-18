@@ -3,6 +3,11 @@ import {Router, Route, Redirect, IndexRoute, hashHistory} from 'react-router';
 import AuthModule from './components/auth/AuthModule';
 import DataGrid from './views/DataGrid';
 import ApplicationShell from './ApplicationShell';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import './css/sidebar.css';
+import './sass/main.scss';
 
 class App extends React.Component {
     render() {
